@@ -1,20 +1,14 @@
-print("MAIN.PY STARTED")
-
 from http.server import SimpleHTTPRequestHandler, HTTPServer
+from functools import partial
 import os
 
 PORT = 8080
 WEB_DIR = "/app/static"
 
-os.chdir(WEB_DIR)
+Handler = partial(SimpleHTTPRequestHandler, directory=WEB_DIR)
 
-class Handler(SimpleHTTPRequestHandler):
-    pass
+print("MAIN.PY STARTED")
+print(f"Serving {WEB_DIR} on port {PORT}")
 
-def main():
-    server = HTTPServer(("0.0.0.0", PORT), Handler)
-    print(f"Energy Dashboard running on port {PORT}")
-    server.serve_forever()
-
-if __name__ == "__main__":
-    main()
+httpd = HTTPServer(("0.0.0.0", PORT), Handler)
+httpd.serve_forever()
