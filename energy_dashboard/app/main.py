@@ -1,3 +1,5 @@
+print("MAIN.PY STARTED")
+
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 import os
 

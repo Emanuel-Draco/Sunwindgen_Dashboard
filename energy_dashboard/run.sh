@@ -2,4 +2,5 @@
 set -e
 
 echo "Starting Energy Dashboard (appliance mode)"
+
 exec python3 /app/main.py
