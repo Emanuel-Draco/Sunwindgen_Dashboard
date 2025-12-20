@@ -1,6 +1,5 @@
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from functools import partial
-import os
 
 PORT = 8080
 WEB_DIR = "/app/static"

@@ -1,23 +1,14 @@
 name: Energy Dashboard
 slug: energy_dashboard
 version: "0.1.0"
-description: Appliance Energy Dashboard
+description: Development Energy Dashboard
 
 arch:
   - amd64
 
-startup: services
-boot: auto
-init: false
-
-ingress: true
-ingress_port: 8080
-
-build:
-  dockerfile: Dockerfile
-  args:
-    BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
-
-watchdog: false
 startup: application
 boot: auto
+watchdog: false
+
+ports:
+  8080/tcp: 8080

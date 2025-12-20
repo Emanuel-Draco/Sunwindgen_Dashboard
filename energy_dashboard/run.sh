@@ -1,25 +1,6 @@
-#!/usr/bin/with-contenv bash
-set -ex
+#!/usr/bin/env bash
+set -e
 
-echo "PWD:"
-pwd
-
-echo "LS /:"
-ls -la /
-
-echo "LS /app:"
-ls -la /app
-
-echo "WHICH PYTHON:"
-which python3
-
-echo "RUNNING PYTHON VERSION:"
-python3 --version
-
-echo "TRY IMPORT:"
-python3 - << 'EOF'
-print("PYTHON WORKS")
-EOF
-
-echo "START MAIN"
+echo "Starting Energy Dashboard"
 exec python3 /app/main.py
+
