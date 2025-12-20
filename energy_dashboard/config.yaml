@@ -5,6 +5,8 @@ description: Development Energy Dashboard
 
 arch:
   - amd64
+  - arm64
+  - armv7
 
 startup: application
 boot: auto
