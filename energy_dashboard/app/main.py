@@ -13,10 +13,12 @@ app.include_router(auth_router, prefix="/api")
 app.include_router(health_router, prefix="/api")
 app.include_router(energy_router, prefix="/api")
 
-# Root → login
 @app.get("/")
 def root():
     return FileResponse("static/login.html")
 
-# Static files
+@app.get("/dashboard.html")
+def dashboard():
+    return FileResponse("static/dashboard.html")
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
