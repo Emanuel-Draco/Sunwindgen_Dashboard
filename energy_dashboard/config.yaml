@@ -15,6 +15,3 @@ ingress_port: 8080
 
 build:
   dockerfile: Dockerfile
-
-watchdog: false
-
