@@ -5,12 +5,11 @@ description: Development Energy Dashboard
 
 arch:
   - amd64
-  - arm64
+  - aarch64
   - armv7
 
 startup: application
 boot: auto
-watchdog: false
 
 ports:
   8080/tcp: 8080
