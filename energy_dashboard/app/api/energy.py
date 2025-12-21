@@ -1,6 +1,8 @@
 import os
 import requests
 from fastapi import APIRouter, HTTPException
+from fastapi import Depends
+from auth.security import get_current_user
 
 router = APIRouter()
 
@@ -13,7 +15,7 @@ HEADERS = {
 }
 
 @router.get("/energy")
-def energy():
+def energy(user=Depends(get_current_user)):
     if not SUPERVISOR_TOKEN:
         raise HTTPException(status_code=500, detail="No supervisor token")
 
