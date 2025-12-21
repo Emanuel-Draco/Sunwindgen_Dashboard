@@ -10,5 +10,8 @@ startup: application
 boot: auto
 init: false
 
-ingress: true
-ingress_port: 8080
+ingress: false
+
+ports:
+  8080/tcp: 8080
+
