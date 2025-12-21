@@ -3,7 +3,6 @@
 users_db = {
     "admin": {
         "username": "admin",
-        # HASH wygenerowany JEDEN RAZ, na stałe
         # hasło: admin123
         "password_hash": "$2b$12$KIXQ0r3kYkY7Z8wKZ4ZQ0uQZ8z5zHhZ8f8Yf3d7K6N5G9H4C2E3S"
     }
