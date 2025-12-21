@@ -1,14 +1,12 @@
-from http.server import SimpleHTTPRequestHandler, HTTPServer
-from functools import partial
+from http.server import SimpleHTTPRequestHandler
+from socketserver import TCPServer
 import os
 
 PORT = 8080
-WEB_DIR = "/app/static"
+os.chdir("/app/static")
 
 print("MAIN.PY STARTED")
-print(f"Serving {WEB_DIR} on port {PORT}")
 
-handler = partial(SimpleHTTPRequestHandler, directory=WEB_DIR)
-
-httpd = HTTPServer(("0.0.0.0", PORT), handler)
-httpd.serve_forever()   # ← TO MUSI TU BYĆ
+with TCPServer(("", PORT), SimpleHTTPRequestHandler) as httpd:
+    print(f"Serving on port {PORT}")
+    httpd.serve_forever()
