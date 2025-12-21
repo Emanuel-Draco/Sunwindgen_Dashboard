@@ -3,7 +3,7 @@ from auth.security import hash_password
 users_db = {
     "admin": {
         "username": "admin",
-        "password_hash": hash_password("admin123")
+        "password_hash": "$2b$12$3Zp3xwV9Y4xQZqEJk8Vb0uL8sP5mNq..."
     }
 }
 
