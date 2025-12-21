@@ -8,7 +8,7 @@ WORKDIR /app
 COPY app /app
 COPY run.sh /run.sh
 
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
+RUN pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt
 RUN chmod +x /run.sh
 
 CMD ["/run.sh"]
