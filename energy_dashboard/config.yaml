@@ -1,18 +1,20 @@
 name: Energy Dashboard
 slug: energy_dashboard
 version: "0.1.0"
-description: Development Energy Dashboard
+description: Appliance Energy Dashboard
 
 arch:
   - amd64
-  - aarch64
-  - armv7
 
 startup: application
 boot: auto
+init: false
 
-ports:
-  8080/tcp: 8080
+ingress: true
+ingress_port: 8080
 
-ports_description:
-  8080/tcp: Web Interface
+build:
+  dockerfile: Dockerfile
+
+watchdog: false
+

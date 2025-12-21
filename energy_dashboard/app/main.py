@@ -1,21 +1,13 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+from functools import partial
 
-class Handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
-        self.wfile.write(b"""
-        <html>
-            <head><title>Energy Dashboard</title></head>
-            <body>
-                <h1>Energy Dashboard Add-on is running</h1>
-                <p>If you see this, the add-on works.</p>
-            </body>
-        </html>
-        """)
+PORT = 8080
+WEB_DIR = "/app/static"
 
-if __name__ == "__main__":
-    server = HTTPServer(("0.0.0.0", 8080), Handler)
-    print("Listening on port 8080...")
-    server.serve_forever()
+Handler = partial(SimpleHTTPRequestHandler, directory=WEB_DIR)
+
+print("MAIN.PY STARTED")
+print(f"Serving {WEB_DIR} on port {PORT}")
+
+httpd = HTTPServer(("0.0.0.0", PORT), Handler)
+httpd.serve_forever()
