@@ -20,6 +20,5 @@ def login(data: LoginRequest):
     if not verify_password(data.password, user["password_hash"]):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token({"sub": user["username"]})
-
+    token = create_access_token(user["username"])
     return {"access_token": token}

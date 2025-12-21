@@ -4,7 +4,4 @@ router = APIRouter()
 
 @router.get("/health")
 def health():
-    return {
-        "status": "ok",
-        "service": "energy_dashboard"
-    }
+    return {"status": "ok"}

@@ -23,7 +23,7 @@ function login() {
     })
   })
   .then(r => {
-    if (!r.ok) throw new Error("Login failed");
+    if (!r.ok) throw new Error();
     return r.json();
   })
   .then(data => {

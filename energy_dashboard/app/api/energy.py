@@ -1,7 +1,7 @@
 import os
 import requests
-from fastapi import APIRouter, HTTPException
-from fastapi import Depends
+from fastapi import APIRouter, Depends, HTTPException
+
 from auth.security import get_current_user
 
 router = APIRouter()
