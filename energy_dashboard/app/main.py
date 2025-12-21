@@ -1,17 +1,13 @@
-from http.server import SimpleHTTPRequestHandler
-from socketserver import TCPServer
-import os
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from api.health import router as health_router
+from api.energy import router as energy_router
 
-PORT = 8080
-os.chdir("/app/static")
+app = FastAPI(title="Energy Dashboard")
 
-class Handler(SimpleHTTPRequestHandler):
-    def end_headers(self):
-        self.send_header("Cache-Control", "no-store")
-        super().end_headers()
+# API
+app.include_router(health_router, prefix="/api")
+app.include_router(energy_router, prefix="/api")
 
-print("Serving dashboard on port", PORT)
-
-with TCPServer(("0.0.0.0", PORT), Handler) as httpd:
-    httpd.serve_forever()
-
+# Frontend
+app.mount("/", StaticFiles(directory="static", html=True), name="static")

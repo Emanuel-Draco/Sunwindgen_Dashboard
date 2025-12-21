@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h2>Energy Dashboard</h2>
+  <button onclick="login()">Login (test)</button>
+
+  <script>
+    function login() {
+      localStorage.setItem("logged", "1");
+      window.location.href = "/dashboard.html";
+    }
+  </script>
+</body>
+</html>
