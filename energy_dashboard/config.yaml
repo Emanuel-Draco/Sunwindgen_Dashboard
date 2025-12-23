@@ -1,6 +1,7 @@
 name: Energy Dashboard
 slug: energy_dashboard
-version: "0.4.0"
+version: "0.4.2"
+description: Custom standalone energy dashboard for Home Assistant
 
 arch:
   - amd64
