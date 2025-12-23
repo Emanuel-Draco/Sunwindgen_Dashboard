@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>History</title></head>
+<body>
+
+<div id="navbar"></div>
+
+<h2>History</h2>
+<p>Coming soon…</p>
+
+<script src="/static/app.js"></script>
+<script>
+fetch("/static/navbar.html")
+  .then(r => r.text())
+  .then(html => document.getElementById("navbar").innerHTML = html);
+
+if (!localStorage.getItem("token")) window.location.href = "/";
+</script>
+
+</body>
+</html>

@@ -22,3 +22,12 @@ def dashboard():
     return FileResponse("static/dashboard.html")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/history.html")
+def history():
+    return FileResponse("static/history.html")
+
+@app.get("/settings.html")
+def settings():
+    return FileResponse("static/settings.html")
+

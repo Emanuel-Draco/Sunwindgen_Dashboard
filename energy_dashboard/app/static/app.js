@@ -17,3 +17,8 @@ fetch("/api/energy", {
     Load: ${data.load}
   `;
 });
+
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "/";
+}
