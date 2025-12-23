@@ -1,17 +1,12 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-python:3.12
 FROM $BUILD_FROM
-
-# Python + wymagane biblioteki (TYLKO APK)
-RUN apk add --no-cache \
-    python3 \
-    py3-fastapi \
-    py3-uvicorn \
-    py3-jose
 
 WORKDIR /app
 
 COPY app /app
 COPY run.sh /run.sh
+
+RUN pip install --no-cache-dir fastapi uvicorn python-jose
 
 RUN chmod +x /run.sh
 
