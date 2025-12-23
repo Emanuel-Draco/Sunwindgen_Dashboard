@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dashboard</title>
-</head>
 <body>
 
 <div id="navbar"></div>
@@ -14,26 +11,22 @@
 
 <script src="/static/app.js"></script>
 <script>
+if (!localStorage.getItem("token")) location.href = "/";
+
 fetch("/static/navbar.html")
   .then(r => r.text())
-  .then(html => document.getElementById("navbar").innerHTML = html);
-
-const token = localStorage.getItem("token");
-if (!token) window.location.href = "/";
+  .then(html => navbar.innerHTML = html);
 
 fetch("/api/energy", {
-  headers: { "Authorization": "Bearer " + token }
+  headers: { "Authorization": "Bearer " + localStorage.getItem("token") }
 })
 .then(r => r.json())
 .then(data => {
-  document.getElementById("pv").innerText = data.pv_production;
-  document.getElementById("battery").innerText = data.battery;
-  document.getElementById("load").innerText = data.load;
+  pv.innerText = data.pv_production;
+  battery.innerText = data.battery;
+  load.innerText = data.load;
 });
-
-console.log("ENERGY DATA:", data);
 </script>
 
 </body>
 </html>
-
