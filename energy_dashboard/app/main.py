@@ -21,4 +21,12 @@ def root():
 def dashboard():
     return FileResponse("static/dashboard.html")
 
+@app.get("/history.html")
+def history_page():
+    return FileResponse("static/history.html")
+
+@app.get("/settings.html")
+def settings_page():
+    return FileResponse("static/settings.html")
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
