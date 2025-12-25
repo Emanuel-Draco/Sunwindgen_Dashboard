@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
 
@@ -35,7 +35,7 @@ function login() {
   })
   .then(data => {
     localStorage.setItem("token", data.access_token);
-    window.location.replace("/dashboard.html");
+    window.location.replace("dashboard.html");
   })
   .catch(() => error.innerText = "Invalid login");
 }
