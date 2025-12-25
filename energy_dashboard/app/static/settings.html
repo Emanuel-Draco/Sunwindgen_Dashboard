@@ -5,27 +5,19 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <script>
-  if (!localStorage.getItem("token")) {
-    window.location.replace("/");
-  }
 
-  // blokuje cofanie strony z pamięci przeglądarki
-  window.history.pushState(null, "", window.location.href);
-  window.onpopstate = function () {
-    window.location.replace("/");
-  };
-  </script>
-  <div id="navbar"></div>
+<div id="navbar"></div>
 
-  <div id="card">
-    <h1>Settings</h1>
+<main class="container">
+  <h1>Settings</h1>
 
+  <div class="card">
     <p>Account: admin</p>
     <p>Language: EN</p>
     <p>Theme: Light</p>
   </div>
+</main>
 
-  <script src="static/navbar.js"></script>
+<script src="/static/app.js"></script>
 </body>
 </html>
