@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
+  <meta charset="UTF-8">
+  <title>Energy Dashboard – Login</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="login-body">
 
-<div class="login-page">
-  <div class="login-card">
-    <h1>Energy Dashboard</h1>
-    <p class="subtitle">Secure access</p>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <h1>Energy Dashboard</h1>
+      <p class="subtitle">Secure access</p>
 
-    <input id="user" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
+      <input id="user" type="text" placeholder="Username">
+      <input id="pass" type="password" placeholder="Password">
 
-    <button onclick="login()">Login</button>
-    <p id="error" class="error"></p>
+      <button onclick="login()">Login</button>
+
+      <p id="error" class="error"></p>
+    </div>
   </div>
-</div>
 
 <script>
 function login() {
@@ -37,7 +39,9 @@ function login() {
     localStorage.setItem("token", data.access_token);
     window.location.replace("/dashboard.html");
   })
-  .catch(() => error.innerText = "Invalid credentials");
+  .catch(() => {
+    document.getElementById("error").innerText = "Invalid credentials";
+  });
 }
 </script>
 
