@@ -4,6 +4,17 @@ if (!token) {
   window.location.replace("/");
 }
 
+// ===== NAVBAR LOADER =====
+fetch("/static/navbar.html")
+  .then(r => {
+    if (!r.ok) throw new Error("Navbar not found");
+    return r.text();
+  })
+  .then(html => {
+    const navbar = document.getElementById("navbar");
+    if (navbar) navbar.innerHTML = html;
+  });
+
 fetch("/api/energy", {
   headers: {
     "Authorization": "Bearer " + token
