@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Dashboard</title>
-</head>
-<body>
-  <script>
-  if (!localStorage.getItem("token")) {
-    window.location.replace("/");
-  }
+<link rel="stylesheet" href="/static/style.css">
 
-  // blokuje cofanie strony z pamięci przeglądarki
-  window.history.pushState(null, "", window.location.href);
-  window.onpopstate = function () {
-    window.location.replace("/");
-  };
-  </script>
+<div id="nav"></div>
 
-  <!-- TO MUSI BYĆ -->
-  <div id="navbar"></div>
+<div class="container">
+  <div class="card">
+    <h2>Energy Overview</h2>
+    <div id="data">Loading...</div>
+  </div>
+</div>
 
-  <h1>Energy Overview</h1>
-  <div id="data">Loading...</div>
+<script>
+  fetch("/static/navbar.html")
+    .then(r => r.text())
+    .then(html => document.getElementById("nav").innerHTML = html);
+</script>
 
-<script src="static/navbar.js"></script>
-<script src="static/app.js"></script>
-</body>
-</html>
+<script src="/static/app.js"></script>
