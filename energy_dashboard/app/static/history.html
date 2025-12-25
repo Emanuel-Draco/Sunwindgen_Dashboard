@@ -1,35 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>History</title>
-  <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-  <script>
-  if (!localStorage.getItem("token")) {
-    window.location.replace("/");
-  }
+<link rel="stylesheet" href="/static/style.css">
 
-  // blokuje cofanie strony z pamięci przeglądarki
-  window.history.pushState(null, "", window.location.href);
-  window.onpopstate = function () {
-    window.location.replace("/");
-  };
-  </script>
+<div id="navbar"></div>
 
-  <div id="navbar"></div>
+<main class="container">
+  <h1>Energy History</h1>
 
-  <div id="card">
-      <h1>Energy History</h1>
-    <p>Historical data (mock for now)</p>
-
+  <div class="card">
     <ul>
       <li>Yesterday: 12.4 kWh</li>
       <li>Last 7 days: 84.1 kWh</li>
       <li>Last month: 342 kWh</li>
     </ul>
   </div>
+</main>
 
-  <script src="static/navbar.js"></script>
-</body>
-</html>
+<script src="/static/app.js"></script>

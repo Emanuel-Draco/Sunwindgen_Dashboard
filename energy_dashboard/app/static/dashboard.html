@@ -1,18 +1,15 @@
 <link rel="stylesheet" href="/static/style.css">
 
-<div id="nav"></div>
+<div id="navbar"></div>
 
-<div class="container">
-  <div class="card">
-    <h2>Energy Overview</h2>
-    <div id="data">Loading...</div>
+<main class="container">
+  <h1>Energy Overview</h1>
+
+  <div class="grid">
+    <div class="card">PV: <span id="pv">–</span></div>
+    <div class="card">Battery: <span id="battery">–</span></div>
+    <div class="card">Load: <span id="load">–</span></div>
   </div>
-</div>
-
-<script>
-  fetch("/static/navbar.html")
-    .then(r => r.text())
-    .then(html => document.getElementById("nav").innerHTML = html);
-</script>
+</main>
 
 <script src="/static/app.js"></script>
