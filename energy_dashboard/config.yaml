@@ -1,7 +1,7 @@
 name: Energy Dashboard
 slug: energy_dashboard
-version: "0.4.7"
-description: Custom standalone energy dashboard for Home Assistant
+version: "0.3.1"
+description: Appliance Energy Dashboard
 
 arch:
   - amd64
@@ -10,12 +10,8 @@ startup: application
 boot: auto
 init: false
 
+ingress: false
+
 ports:
   8080/tcp: 8080
 
-build:
-  dockerfile: Dockerfile
-  from: ghcr.io/home-assistant/amd64-python:3.12
-
-environment:
-  MOCK_MODE: "true"

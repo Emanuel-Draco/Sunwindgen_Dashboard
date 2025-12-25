@@ -1,32 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Dashboard</title>
+</head>
 <body>
-
-<div id="navbar"></div>
-
-<h2>Energy Overview</h2>
-<p>PV: <span id="pv"></span> W</p>
-<p>Battery: <span id="battery"></span> %</p>
-<p>Load: <span id="load"></span> W</p>
-
-<script src="/static/app.js"></script>
-<script>
-if (!localStorage.getItem("token")) location.href = "/";
-
-fetch("/static/navbar.html")
-  .then(r => r.text())
-  .then(html => navbar.innerHTML = html);
-
-fetch("/api/energy", {
-  headers: { "Authorization": "Bearer " + localStorage.getItem("token") }
-})
-.then(r => r.json())
-.then(data => {
-  pv.innerText = data.pv_production;
-  battery.innerText = data.battery;
-  load.innerText = data.load;
-});
-</script>
-
+  <h1>Energy Overview</h1>
+  <div id="data">Loading...</div>
+  <script src="/static/app.js"></script>
 </body>
 </html>
