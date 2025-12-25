@@ -4,6 +4,18 @@
   <title>History</title>
 </head>
 <body>
+  <script>
+  if (!localStorage.getItem("token")) {
+    window.location.replace("/");
+  }
+
+  // blokuje cofanie strony z pamięci przeglądarki
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = function () {
+    window.location.replace("/");
+  };
+  </script>
+
   <div id="navbar"></div>
 
   <h1>Energy History</h1>

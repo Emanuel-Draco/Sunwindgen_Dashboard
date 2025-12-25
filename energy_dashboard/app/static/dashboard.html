@@ -4,6 +4,17 @@
   <title>Dashboard</title>
 </head>
 <body>
+  <script>
+  if (!localStorage.getItem("token")) {
+    window.location.replace("/");
+  }
+
+  // blokuje cofanie strony z pamięci przeglądarki
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = function () {
+    window.location.replace("/");
+  };
+  </script>
 
   <!-- TO MUSI BYĆ -->
   <div id="navbar"></div>
@@ -11,7 +22,7 @@
   <h1>Energy Overview</h1>
   <div id="data">Loading...</div>
 
-  <script src="static/navbar.js"></script>
-  <script src="static/app.js"></script>
+<script src="static/navbar.js"></script>
+<script src="static/app.js"></script>
 </body>
 </html>
