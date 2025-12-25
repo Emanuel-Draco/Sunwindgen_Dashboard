@@ -13,6 +13,11 @@
   <p id="error"></p>
 
 <script>
+const token = localStorage.getItem("token");
+  if (token) {
+    window.location.replace("/dashboard.html");
+  }
+
 function login() {
   fetch("/api/login", {
     method: "POST",

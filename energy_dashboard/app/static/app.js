@@ -1,5 +1,8 @@
 const token = localStorage.getItem("token");
-if (!token) location.href = "/";
+
+if (!token) {
+  window.location.replace("/");
+}
 
 fetch("/api/energy", {
   headers: {
