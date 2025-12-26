@@ -94,12 +94,14 @@ body {
 
 .login-box input {
   width: 100%;
-  padding: 10px;
+  height: 44px;        
+  padding: 0 12px;           
   margin-bottom: 14px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 14px;
   text-align: center;
+  line-height: 44px;         
 }
 
 .login-box input:focus {
@@ -109,8 +111,8 @@ body {
 }
 
 .login-box button {
-  width: 100%;
-  padding: 11px;
+  height: 44px;          
+  padding: 0;
   background: #2563eb;
   color: white;
   border: none;
