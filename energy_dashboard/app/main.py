@@ -17,16 +17,16 @@ app.include_router(energy_router, prefix="/api")
 # ===== PAGES =====
 @app.get("/")
 def login_page():
-    return FileResponse("static/login.html")
+    return FileResponse("static/HTML/login.html")
 
 @app.get("/dashboard.html")
 def dashboard():
-    return FileResponse("static/dashboard.html")
+    return FileResponse("static/HTML/dashboard.html")
 
 @app.get("/history.html")
 def history():
-    return FileResponse("static/history.html")
+    return FileResponse("static/HTML/history.html")
 
 @app.get("/settings.html")
 def settings():
-    return FileResponse("static/settings.html")
+    return FileResponse("static/HTML/settings.html")
