@@ -2,29 +2,43 @@
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
+<div class="login-wrapper">
   <div class="login-box">
-    <h2>Sunwindgen</h2>
+    <h2>Energy Dashboard</h2>
 
-    <input class="input" placeholder="Username">
-    <input class="input" type="password" placeholder="Password">
+    <!-- UWAGA NA ID -->
+    <input id="user" type="text" placeholder="Username">
+    <input id="pass" type="password" placeholder="Password">
 
-    <button onclick="login()">Login</button>
+    <button id="loginBtn">Login</button>
+
     <p id="error"></p>
   </div>
+</div>
 
 <script>
+document.getElementById("loginBtn").addEventListener("click", login);
+
 function login() {
+  const userEl = document.getElementById("user");
+  const passEl = document.getElementById("pass");
+
+  if (!userEl || !passEl) {
+    console.error("Input elements not found");
+    return;
+  }
+
+  const username = userEl.value;
+  const password = passEl.value;
+
   fetch("/api/login", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      username: user.value,
-      password: pass.value
-    })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password })
   })
   .then(r => {
     if (!r.ok) throw new Error();
@@ -34,7 +48,9 @@ function login() {
     localStorage.setItem("token", data.access_token);
     window.location.replace("/dashboard.html");
   })
-  .catch(() => error.innerText = "Invalid login");
+  .catch(() => {
+    document.getElementById("error").innerText = "Invalid login";
+  });
 }
 </script>
 

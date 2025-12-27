@@ -2,22 +2,36 @@
 <html>
 <head>
   <title>Dashboard</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/dashboard.css">
 </head>
 <body>
 
 <div id="navbar"></div>
 
 <main class="container">
-  <h1>Sunwindgen</h1>
+  <h1 class="header">Sunwindgen</h1>
 
   <div class="grid">
     <div class="card">PV: <span id="pv">–</span></div>
     <div class="card">Battery: <span id="battery">–</span></div>
     <div class="card">Load: <span id="load">–</span></div>
   </div>
+
+  <div class="grid">
+    <div class="card">Wskaznik 4</div>
+    <div class="card">Wskaznik 5</div>
+    <div class="card">Wskaznik 6</div>
+  </div>
+
+  <div class="card">
+    <h2>PV Production (Today)</h2>
+    <canvas id="pvChart" height="120"></canvas>
+  </div>
 </main>
 
+<!--<script src="/static/app.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="/static/dashboard.js"></script>
 <script src="/static/app.js"></script>
 </body>
 </html>
