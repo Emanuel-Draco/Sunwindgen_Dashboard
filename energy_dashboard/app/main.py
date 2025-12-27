@@ -1,32 +1,39 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from api.auth import router as auth_router
 from api.energy import router as energy_router
+from auth.security import verify_token
 
 app = FastAPI()
+security = HTTPBearer()
 
-# ===== STATIC FILES =====
+# STATIC: tylko css / js / html fragments
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# ===== ROUTERS =====
+# API
 app.include_router(auth_router, prefix="/api")
 app.include_router(energy_router, prefix="/api")
 
-# ===== PAGES =====
+# LOGIN (bez auth)
 @app.get("/")
 def login_page():
     return FileResponse("static/HTML/login.html")
 
+# ===== PROTECTED PAGES =====
+
 @app.get("/dashboard.html")
-def dashboard():
+def dashboard(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    verify_token(credentials.credentials)
     return FileResponse("static/HTML/dashboard.html")
 
 @app.get("/history.html")
-def history():
+def history(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    verify_token(credentials.credentials)
     return FileResponse("static/HTML/history.html")
 
 @app.get("/settings.html")
-def settings():
+def settings(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    verify_token(credentials.credentials)
     return FileResponse("static/HTML/settings.html")

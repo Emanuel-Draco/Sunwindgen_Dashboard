@@ -1,11 +1,24 @@
-console.log("dashboard.js loaded");
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // ===== MOCK DATA =====
   document.getElementById("pv").innerText = "4.8 kW";
   document.getElementById("battery").innerText = "72 %";
   document.getElementById("load").innerText = "3.2 kW";
+
+  loadNavbar();
+
+  function loadNavbar() {
+  fetch("/static/HTML/navbar.html")
+    .then(r => {
+      if (!r.ok) throw new Error("Navbar not found");
+      return r.text();
+    })
+    .then(html => {
+      const nav = document.getElementById("navbar");
+      if (nav) nav.innerHTML = html;
+    })
+    .catch(err => console.error("Navbar load error:", err));
+}
 
   // ===== CHART =====
   const ctx = document.getElementById("pvChart");
