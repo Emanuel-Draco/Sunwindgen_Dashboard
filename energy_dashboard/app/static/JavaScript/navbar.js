@@ -6,9 +6,17 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
   fetch("/static/HTML/navbar.html")
-    .then(r => r.text())
+    .then(r => {
+      if (!r.ok) throw new Error("Navbar HTML not found");
+      return r.text();
+    })
     .then(html => {
-      document.getElementById("navbar").innerHTML = html;
-    });
+      const el = document.getElementById("navbar");
+      if (el) el.innerHTML = html;
+    })
+    .catch(err => console.error("Navbar load error:", err));
+
 });
+
