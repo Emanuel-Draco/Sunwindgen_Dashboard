@@ -1,17 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    window.location.replace("/");
-    return;
-  }
-
-  loadNavbar();
+  // settings page currently static
+  // navbar is loaded globally by navbar.js
 });
-
-function loadNavbar() {
-  fetch("/static/HTML/navbar.html")
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById("navbar").innerHTML = html;
-    });
-}
