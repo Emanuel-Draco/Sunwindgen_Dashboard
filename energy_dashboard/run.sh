@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/with-contenv sh
 set -e
 
 echo "Starting Energy Dashboard API"
+echo "SECRET_KEY is: ${secret_key}"
 
-exec python3 -m uvicorn main:app \
-  --host 0.0.0.0 \
-  --port 8080
+export SECRET_KEY="${secret_key}"
+
+exec python3 -m uvicorn main:app --host 0.0.0.0 --port 8080

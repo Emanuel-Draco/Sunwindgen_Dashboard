@@ -9,6 +9,7 @@ arch:
 startup: application
 boot: auto
 init: false
+panel_icon: mdi:solar-power
 
 ingress: false
 

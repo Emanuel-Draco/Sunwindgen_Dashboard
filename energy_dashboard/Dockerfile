@@ -11,6 +11,4 @@ COPY run.sh /run.sh
 RUN pip3 install --no-cache-dir --break-system-packages -r /app/requirements.txt
 RUN chmod +x /run.sh
 
-ENV SECRET_KEY=saharmylovilovi
-
 CMD ["/run.sh"]

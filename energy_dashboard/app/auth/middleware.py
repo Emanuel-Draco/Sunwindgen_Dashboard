@@ -2,7 +2,7 @@ from fastapi import Request
 from starlette.responses import RedirectResponse
 from auth.security import get_current_user
 
-EXCLUDED_PATHS = {"/", "/api/login", "/health", "/static"}
+EXCLUDED_PATHS = {"/", "/login", "/health", "/static"}
 
 async def auth_middleware(request: Request, call_next):
     path = request.url.path
