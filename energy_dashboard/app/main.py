@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Depends, JSONResponse
+from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, RedirectResponse
+from starlette.responses import JSONResponse
 from api.auth import router as auth_router
 from auth.middleware import auth_middleware
 from api.energy import router as energy_router
