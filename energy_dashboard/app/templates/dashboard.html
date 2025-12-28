@@ -34,7 +34,7 @@
   // Sprawdź token przy załadowaniu strony
     const token = localStorage.getItem("token");
     if (!token) {
-      window.location.href = "/login.html";
+      window.location.href = "/templates/login.html";
     } else {
       // Opcjonalna weryfikacja tokenu w backendzie
       fetch("/api/verify", {
@@ -47,14 +47,14 @@
       .catch(() => {
         // Jeśli niepoprawny (np. wygasł), wyloguj
         localStorage.removeItem("token");
-        window.location.href = "/login.html";
+        window.location.href = "/templates/login.html";
       });
     }
 
     // Obsługa wylogowania
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("token");
-      window.location.href = "/login.html";
+      window.location.href = "/templates/login.html";
     });
 </script>
 
