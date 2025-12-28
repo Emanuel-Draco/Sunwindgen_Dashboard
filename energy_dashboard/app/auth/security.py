@@ -2,8 +2,12 @@ from jose import jwt, JWTError
 from fastapi import Request, HTTPException
 from datetime import datetime, timedelta
 import hashlib
+import os
 
-SECRET_KEY = "CHANGE_ME_IN_STAGE_3"
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY not set")
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

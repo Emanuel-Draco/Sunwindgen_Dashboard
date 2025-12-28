@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, RedirectResponse
 from api.auth import router as auth_router
+from auth.middleware import auth_middleware
 from api.energy import router as energy_router
 from auth.security import get_current_user
 from pathlib import Path
@@ -19,6 +20,7 @@ app.mount(
 
 app.include_router(auth_router, prefix="/api")
 app.include_router(energy_router, prefix="/api")
+app.middleware("http")(auth_middleware)
 
 @app.get("/")
 def login_page(user=Depends(get_current_user)):
@@ -43,3 +45,8 @@ def settings(user=Depends(get_current_user)):
 @app.get("/navbar.html")
 def navbar():
     return FileResponse(FRONTEND_DIR / "navbar.html")
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    print("Unhandled error:", exc)
+    return JSONResponse(status_code=500, content={"detail": "Internal error"})
