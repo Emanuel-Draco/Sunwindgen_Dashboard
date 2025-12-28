@@ -1,4 +1,4 @@
-@import '/static/CSS/navbar.css';
+@import './navbar.css';
 
 body {
   margin: 0;

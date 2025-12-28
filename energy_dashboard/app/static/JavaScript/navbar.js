@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Load navbar HTML
-  fetch("/templates/navbar.html")
+  fetch("/HTML/navbar.html")
     .then(r => {
       if (!r.ok) throw new Error("Navbar not found");
       return r.text();
