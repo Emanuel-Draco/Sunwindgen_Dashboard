@@ -35,3 +35,7 @@ def history(user=Depends(get_current_user)):
 @app.get("/settings.html")
 def settings(user=Depends(get_current_user)):
     return FileResponse(FRONTEND_DIR / "settings.html")
+
+@app.get("/navbar.html")
+def navbar():
+    return FileResponse(FRONTEND_DIR / "navbar.html")
