@@ -1,6 +1,4 @@
-# app/auth/users.py
-
-# hasło: admin123
+# app/users.py
 users_db = {
     "admin": {
         "username": "admin",
@@ -10,4 +8,3 @@ users_db = {
 
 def get_user(username: str):
     return users_db.get(username)
-

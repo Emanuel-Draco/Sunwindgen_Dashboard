@@ -1,5 +1,6 @@
+# app/security.py
 from jose import jwt, JWTError
-from fastapi import Request, HTTPException
+from fastapi import Request, HTTPException, Header
 from datetime import datetime, timedelta
 import hashlib
 
@@ -18,13 +19,20 @@ def create_access_token(subject: str):
     payload = {"sub": subject, "exp": expire}
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
-def get_current_user(request: Request):
-    token = request.cookies.get("session")
+def get_current_user(request: Request, authorization: str = Header(None)):
+    # Pobierz token z nagłówka Authorization (Bearer) lub z ciasteczka
+    token = None
+    if authorization:
+        scheme, _, param = authorization.partition(" ")
+        if scheme.lower() != "bearer" or not param:
+            raise HTTPException(status_code=401, detail="Nieprawidłowy nagłówek autoryzacji")
+        token = param
+    else:
+        token = request.cookies.get("session")
     if not token:
-        raise HTTPException(status_code=401, detail="Not authenticated")
-
+        raise HTTPException(status_code=401, detail="Nieautoryzowany")
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload.get("sub")
     except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+        raise HTTPException(status_code=401, detail="Nieprawidłowy lub wygasły token")
