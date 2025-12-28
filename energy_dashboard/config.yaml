@@ -12,6 +12,11 @@ init: false
 
 ingress: false
 
+options:
+  secret_key: "dev-secret-change-me"
+schema:
+  secret_key: str
+
 ports:
   8080/tcp: 8080
 
