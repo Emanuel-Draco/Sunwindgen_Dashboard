@@ -15,30 +15,20 @@
   </div>
   <script>
     function login() {
-      const userElem = document.getElementById("user");
-      const passElem = document.getElementById("pass");
-      const errorElem = document.getElementById("error");
-      fetch("/api/login", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          username: userElem.value,
-          password: passElem.value
-        })
-      })
-      .then(r => {
-        if (!r.ok) throw new Error();
-        return r.json();
-      })
-      .then(data => {
-        // Zapisz token i przejdź do dashboard
-        localStorage.setItem("token", data.access_token);
-        window.location.href = "/templates/dashboard.html";
-      })
-      .catch(() => {
-        errorElem.innerText = "Nieprawidłowe dane logowania";
-      });
-    }
+  fetch("/api/login", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      username: user.value,
+      password: pass.value
+    })
+  })
+  .then(r => {
+    if (!r.ok) throw new Error();
+    window.location.href = "/dashboard.html";
+  })
+  .catch(() => error.innerText = "Invalid login");
+}
   </script>
 </body>
 </html>

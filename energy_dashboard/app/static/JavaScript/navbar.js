@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Logout handler
   document.addEventListener("click", (e) => {
-    if (e.target.id === "logoutBtn") {
-      document.cookie = "session=; Max-Age=0; path=/";
-      window.location.replace("/");
-    }
-  });
+  if (e.target.id === "logoutBtn") {
+    document.cookie = "session=; Max-Age=0; path=/";
+    window.location.replace("/");
+  }
+});
 });

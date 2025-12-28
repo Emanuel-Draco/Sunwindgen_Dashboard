@@ -1,6 +1,5 @@
-# app/security.py
 from jose import jwt, JWTError
-from fastapi import Request, HTTPException, Header
+from fastapi import Request, HTTPException
 from datetime import datetime, timedelta
 import hashlib
 
