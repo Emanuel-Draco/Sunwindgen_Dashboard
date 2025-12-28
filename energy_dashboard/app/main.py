@@ -14,16 +14,16 @@ app.include_router(energy_router, prefix="/api")
 
 @app.get("/")
 def login_page():
-    return FileResponse("static/HTML/login.html")
+    return FileResponse("templates/login.html")
 
 @app.get("/dashboard.html")
 def dashboard(user=Depends(get_current_user)):
-    return FileResponse("static/HTML/dashboard.html")
+    return FileResponse("templates/dashboard.html")
 
 @app.get("/history.html")
 def history(user=Depends(get_current_user)):
-    return FileResponse("static/HTML/history.html")
+    return FileResponse("templates/history.html")
 
 @app.get("/settings.html")
 def settings(user=Depends(get_current_user)):
-    return FileResponse("static/HTML/settings.html")
+    return FileResponse("templates/settings.html")
