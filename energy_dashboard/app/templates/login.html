@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="/static/CSS/login.css">
 </head>
 <body>
   <div class="login-box">
@@ -33,7 +33,7 @@
       .then(data => {
         // Zapisz token i przejdź do dashboard
         localStorage.setItem("token", data.access_token);
-        window.location.href = "/dashboard.html";
+        window.location.href = "/templates/dashboard.html";
       })
       .catch(() => {
         errorElem.innerText = "Nieprawidłowe dane logowania";
