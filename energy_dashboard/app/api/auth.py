@@ -26,3 +26,8 @@ def login(data: LoginRequest, response: Response):
     )
 
     return {"ok": True}
+
+@router.post("/logout")
+def logout(response: Response):
+    response.delete_cookie("session")
+    return {"ok": True}

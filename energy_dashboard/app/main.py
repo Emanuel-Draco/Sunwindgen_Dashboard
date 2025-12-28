@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from api.auth import router as auth_router
 from api.energy import router as energy_router
 from auth.security import get_current_user
@@ -21,7 +21,11 @@ app.include_router(auth_router, prefix="/api")
 app.include_router(energy_router, prefix="/api")
 
 @app.get("/")
-def login_page():
+def login_page(user=Depends(get_current_user)):
+    return RedirectResponse("/dashboard.html")
+
+@app.get("/login")
+def login_fallback():
     return FileResponse(FRONTEND_DIR / "login.html")
 
 @app.get("/dashboard.html")
