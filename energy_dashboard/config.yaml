@@ -13,7 +13,7 @@ init: false
 ingress: false
 
 options:
-  secret_key: "dev-secret-change-me"
+  secret_key: "saharmylovilovi"
 schema:
   secret_key: str
 

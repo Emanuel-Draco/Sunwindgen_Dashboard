@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import hashlib
 import os
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("secret_key") or os.environ.get("SECRET_KEY")
 if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY not set")
 
