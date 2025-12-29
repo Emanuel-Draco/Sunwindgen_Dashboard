@@ -8,7 +8,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def get_secret_key() -> str:
-    key = os.environ.get("SECRET_KEY") or os.environ.get("secret_key")
+    key = os.environ.get("secret_key")
     if not key:
         raise RuntimeError("SECRET_KEY not set")
     return key
