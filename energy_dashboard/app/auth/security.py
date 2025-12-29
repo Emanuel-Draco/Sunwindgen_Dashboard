@@ -2,7 +2,7 @@ from jose import jwt, JWTError
 from fastapi import Request, HTTPException
 from datetime import datetime, timedelta
 import hashlib
-from app.config import SECRET_KEY
+from config import SECRET_KEY
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
