@@ -6,7 +6,7 @@ description: Appliance Energy Dashboard
 arch:
   - amd64
 
-startup: application
+startup: services
 boot: auto
 init: false
 panel_icon: mdi:solar-power
