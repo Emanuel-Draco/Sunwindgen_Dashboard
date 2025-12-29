@@ -15,7 +15,7 @@ def login(data: LoginRequest, response: Response):
     if not user or not verify_password(data.password, user["password_hash"]):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token(user["username"])
+    token = create_access_token(user["username"], SECRET_KEY)
 
     response.set_cookie(
         key="session",

@@ -7,12 +7,6 @@ import os
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-def get_secret_key() -> str:
-    key = os.environ.get("SECRET_KEY")
-    if not key:
-        raise RuntimeError("SECRET_KEY not set")
-    return key
-
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
 
