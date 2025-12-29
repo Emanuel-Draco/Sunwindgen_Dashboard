@@ -1,6 +1,6 @@
 name: Energy Dashboard
 slug: energy_dashboard
-version: "0.3.6"
+version: "0.3.7"
 description: Appliance Energy Dashboard
 
 arch:
