@@ -12,18 +12,30 @@ class LoginRequest(BaseModel):
 
 @router.post("/login")
 def login(data: LoginRequest, response: Response):
+    print("LOGIN ATTEMPT:", data.username)
+
     user = get_user(data.username)
-    if not user or not verify_password(data.password, user["password_hash"]):
+    print("USER:", user)
+
+    if not user:
+        print("NO SUCH USER")
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token(user["username"], SECRET_KEY)
+    ok = verify_password(data.password, user["password_hash"])
+    print("PASSWORD OK:", ok)
+
+    if not ok:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    token = create_access_token(user["username"])
+    print("TOKEN CREATED")
 
     response.set_cookie(
         key="session",
         value=token,
         httponly=True,
         samesite="strict",
-        secure=False  # true gdy HTTPS
+        secure=False
     )
 
     return {"ok": True}
