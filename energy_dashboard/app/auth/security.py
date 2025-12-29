@@ -4,12 +4,14 @@ from datetime import datetime, timedelta
 import hashlib
 import os
 
-SECRET_KEY = os.environ.get("secret_key") or os.environ.get("SECRET_KEY")
-if not SECRET_KEY:
-    raise RuntimeError("SECRET_KEY not set")
-
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+def get_secret_key() -> str:
+    key = os.environ.get("SECRET_KEY") or os.environ.get("secret_key")
+    if not key:
+        raise RuntimeError("SECRET_KEY not set")
+    return key
 
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
@@ -20,7 +22,7 @@ def verify_password(password: str, password_hash: str) -> bool:
 def create_access_token(subject: str):
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {"sub": subject, "exp": expire}
-    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+    return jwt.encode(payload, get_secret_key(), algorithm=ALGORITHM)
 
 def get_current_user(request: Request):
     token = request.cookies.get("session")
@@ -28,7 +30,7 @@ def get_current_user(request: Request):
         raise HTTPException(status_code=401)
 
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, get_secret_key(), algorithms=[ALGORITHM])
         return payload["sub"]
     except JWTError:
         raise HTTPException(status_code=401)
