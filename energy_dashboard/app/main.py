@@ -28,16 +28,20 @@ app.include_router(energy_router, prefix="/api")
 app.middleware("http")(auth_middleware)
 
 @app.get("/")
-def login_page(user=Depends(get_current_user)):
-    return RedirectResponse("/dashboard.html")
+def root():
+    return RedirectResponse("/login")
 
 @app.get("/login")
 def login_fallback():
     return FileResponse(FRONTEND_DIR / "login.html")
 
 @app.get("/dashboard.html")
-def dashboard(user=Depends(lambda req=Depends(): get_current_user(req, SECRET_KEY))):
+def dashboard(user=Depends(get_current_user)):
     return FileResponse(FRONTEND_DIR / "dashboard.html")
+
+#@app.get("/dashboard.html")
+#def dashboard(user=Depends(lambda req=Depends(): get_current_user(req, SECRET_KEY))):
+#   return FileResponse(FRONTEND_DIR / "dashboard.html")
 
 @app.get("/history.html")
 def history(user=Depends(get_current_user)):
