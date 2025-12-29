@@ -8,9 +8,6 @@ from config import SECRET_KEY
 from api.energy import router as energy_router
 from auth.security import get_current_user, create_access_token
 from pathlib import Path
-import os
-
-SECRET_KEY = os.environ.get("secret_key")
 
 if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY not set at startup")
