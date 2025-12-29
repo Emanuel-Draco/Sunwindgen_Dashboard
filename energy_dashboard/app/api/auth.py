@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Response
 from pydantic import BaseModel
 from auth.users import get_user
 from auth.security import verify_password, create_access_token
+from config import SECRET_KEY
 
 router = APIRouter()
 
