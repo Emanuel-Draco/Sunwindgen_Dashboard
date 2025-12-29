@@ -4,6 +4,7 @@ from fastapi.responses import FileResponse, RedirectResponse
 from starlette.responses import JSONResponse
 from api.auth import router as auth_router
 from auth.middleware import auth_middleware
+from app.config import SECRET_KEY
 from api.energy import router as energy_router
 from auth.security import get_current_user, create_access_token
 from pathlib import Path

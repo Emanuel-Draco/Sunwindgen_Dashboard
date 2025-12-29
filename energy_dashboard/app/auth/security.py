@@ -2,7 +2,7 @@ from jose import jwt, JWTError
 from fastapi import Request, HTTPException
 from datetime import datetime, timedelta
 import hashlib
-import os
+from app.config import SECRET_KEY
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
@@ -16,7 +16,7 @@ def verify_password(password: str, password_hash: str) -> bool:
 def create_access_token(subject: str):
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {"sub": subject, "exp": expire}
-    return jwt.encode(payload, get_secret_key(), algorithm=ALGORITHM)
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 def get_current_user(request: Request):
     token = request.cookies.get("session")
@@ -24,7 +24,7 @@ def get_current_user(request: Request):
         raise HTTPException(status_code=401)
 
     try:
-        payload = jwt.decode(token, get_secret_key(), algorithms=[ALGORITHM])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload["sub"]
     except JWTError:
         raise HTTPException(status_code=401)
