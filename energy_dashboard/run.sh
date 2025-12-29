@@ -2,8 +2,8 @@
 set -e
 
 echo "Starting Energy Dashboard API"
-echo "SECRET_KEY is: ${secret_key}"
+echo "SECRET_KEY is: ${saharmylovilovi}"
 
-export SECRET_KEY="${secret_key}"
+export SECRET_KEY="${saharmylovilovi}"
 
 exec python3 -m uvicorn main:app --host 0.0.0.0 --port 8080
